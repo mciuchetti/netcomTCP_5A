@@ -36,6 +36,16 @@ public class ClientConnessioneTCP {
             connection = new Socket(serverAddress, port);
             System.out.println("Connessione aperta");
             
+            out = new DataOutputStream(connection.getOutputStream());
+            out.writeUTF("Voglio la data");
+            out.flush();
+            
+            DataInputStream in = null;
+            in = new DataInputStream(connection.getInputStream());
+            System.out.println("Server: " + in.readUTF());
+            
+            
+            
         }
         catch(ConnectException e){
             System.err.println("Server non disponibile!");

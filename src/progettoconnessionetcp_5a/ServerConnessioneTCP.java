@@ -40,7 +40,16 @@ public class ServerConnessioneTCP {
                 connection = sSocket.accept();
                 System.out.println("Connessione stabilita!");
                 System.out.println("Socket server: " + connection.getLocalSocketAddress());
-                System.out.println("Socket client: " + connection.getRemoteSocketAddress());                           
+                System.out.println("Socket client: " + connection.getRemoteSocketAddress());
+            
+                DataInputStream in = null;
+                in = new DataInputStream(connection.getInputStream());
+                System.out.println("Client: " + in.readUTF());
+                
+                out = new DataOutputStream(connection.getOutputStream());
+                out.writeUTF("25/01/18");
+                out.flush();
+                
             }
                catch(IOException e){
                    System.err.println("Errore di I/O!");
